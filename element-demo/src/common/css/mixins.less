@@ -1,0 +1,17 @@
+// 使用less中的mixins特性， 参见：https://less.bootcss.com/#%E5%8F%98%E9%87%8F%EF%BC%88variables%EF%BC%89
+.border-1px(@color) {
+  position: relative;
+  &:after {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    // 可以设置高度和背景
+    // height: 1px;
+    // background：rgba(7, 17, 27, 0.1);
+    // 也可以直接设置边框
+    border-top: 1px solid @color; //rgba(7, 17, 27, 0.1)
+    content: ' ';
+  }
+}
