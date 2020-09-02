@@ -334,7 +334,7 @@ import '@/common/css/index.less' // 报错，说找不到模块
 <template>
   <div id="app">
     <!-- 注意,header是原生的html标签，不能使用小写的header作为自定义组件，需要更改下名字 -->
-    <element-header></element-header>
+    <element-header :seller="seller"></element-header>
     <div class="tab auto-border-1px">
       <div class="tab-item">
         <router-link to="/goods" class="no-link">商品</router-link>
@@ -350,4 +350,32 @@ import '@/common/css/index.less' // 报错，说找不到模块
     <router-view></router-view>
   </div>
 </template>
+```
+
+# 使用vue-resource发送请求
+## 安装：npm i vue-resource --save
+## 引入
+```js
+// main.js
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
+
+// App.vue
+created() {
+  this.$http.get('url', response => {
+    console.log(response.body)
+  })
+}
+
+// 因为之前我用的是mockjs，所以直接使用文件就好，不需要使用vue-resource
+import { sell } from '@/common/js/mock.js'
+const ERR_OK = 0 // 将一些表面看不出含义值，定义成常量，一是方面理解，二是后期维护只需要修改常量
+export default {
+  created() {
+    if (sell.errorCode === ERR_OK) {
+      this.seller = sell
+      console.log('seller:', this.seller)
+    }
+  }
+}
 ```

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 注意,header是原生的html标签，不能使用小写的header作为自定义组件，需要更改下名字 -->
-    <element-header></element-header>
+    <element-header :seller="seller"></element-header>
     <div class="tab auto-border-1px">
       <div class="tab-item">
         <router-link to="/goods" class="no-link">商品</router-link>
@@ -20,8 +20,24 @@
 
 <script>
 import elementHeader from './components/header/header.vue'
+import { sell } from '@/common/js/mock.js'
+const ERR_OK = 0 // 将一些表面看不出含义值，定义成常量，一是方面理解，二是后期维护只需要修改常量
 export default {
   name: 'App',
+  // 如果不需要在函数方法名和括号之间加空格，可以在eslintrc中配置'space-before-function-paren':0
+  data() {
+    return {
+      seller: {}
+
+    }
+  },
+  created() {
+    console.log('f created')
+    if (sell.errorCode === ERR_OK) {
+      this.seller = sell
+      console.log('seller:', this.seller)
+    }
+  },
   components: {
     elementHeader: elementHeader
   }

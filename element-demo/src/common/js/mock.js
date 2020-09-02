@@ -1,7 +1,11 @@
 // 用法可参考： https://www.jianshu.com/p/d812ce349265
-var Mock = require('Mock')
-
+var Mock = require('mockjs')
+var Random = Mock.Random
 export const sell = Mock.mock({
+  'errorCode': 0,
+  'avatar': Random.image('64x64', '@color', '甜品'), // 随机生成一个64*64的，颜色随机的纯背影图
+  'title': '@ctitle(7)', // 随机生成一个10个字的中文标题
+  'des': '峰鸟配送|40分送达',
   // 随机生成1-10条list
   'list|1-10': [{
     // id，递增+1，初始值为1
@@ -38,4 +42,4 @@ export const goods = Mock.mock({
     }]
   }]
 })
-console.loge(JSON.stringify(sell, null, 4))
+// console.log(JSON.stringify(sell, null, 4))
