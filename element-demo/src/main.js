@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import '@/common/css/reset.css' // 配置这个没毛病
 import '@/common/css/index.less'
+import '@/common/fonts/icomoon/style.css'
 import VueResource from 'vue-resource'
 
 Vue.config.productionTip = false

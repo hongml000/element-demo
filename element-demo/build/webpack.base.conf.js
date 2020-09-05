@@ -39,6 +39,14 @@ module.exports = {
       'res': resolve('resource')
     }
   },
+  plugins: {
+    'style-resources-loader': {
+      preProcessor: 'less',
+      patterns: [
+        path.resolve(__dirname, '../src/assets/variables.less')
+      ]
+    }
+  },
   module: {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),

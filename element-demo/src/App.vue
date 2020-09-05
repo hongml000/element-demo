@@ -50,14 +50,14 @@ export default {
   display: flex;
   width: 100%;
   // 所有移动端的大小都是按2倍来设计的，所以虽然写着80px，实际代码里要写40
-  height: 40px;
-  line-height: 40px;
+  height: 2.5rem;
+  line-height: 2.5rem;
   // border: 1px solid rgba(7, 17, 27, 0.1);
   .border-1px(rgba(7, 17, 27, 0.1));
   .tab-item {
     flex: 1;
     text-align: center;
-    font-size: 14px;
+    font-size: 0.875rem;
     .no-link {
       // text-decoration: none;  // 这个可以直接写在reset.css中，直接覆盖全局
       display: block; // 让其自动撑满

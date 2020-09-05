@@ -15,3 +15,11 @@
     content: ' ';
   }
 }
+
+.bg-img(@url) {
+  background-image: ~"url(@{url}@2x.png)";
+  @meida (-webkit-min-device-pixel-ratio:3), (min-device-pixel-ratio: 3) {
+    // 注意，这里针对的是命名有规律的图
+    background: ~"url(@{url}@3x.png)";
+  }
+}

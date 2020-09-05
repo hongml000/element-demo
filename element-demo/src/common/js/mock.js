@@ -5,7 +5,12 @@ export const sell = Mock.mock({
   'errorCode': 0,
   'avatar': Random.image('64x64', '@color', '甜品'), // 随机生成一个64*64的，颜色随机的纯背影图
   'title': '@ctitle(7)', // 随机生成一个10个字的中文标题
-  'des': '峰鸟配送|40分送达',
+  'des': '峰鸟配送 / 40分送达',
+  'supports|1-3': [{
+    'type|0-4': 0,
+    'des|1': '在线支付满20减2'
+  }],
+  'bulletin|50': '这是公告',
   // 随机生成1-10条list
   'list|1-10': [{
     // id，递增+1，初始值为1

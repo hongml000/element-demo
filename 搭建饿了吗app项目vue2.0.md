@@ -69,6 +69,10 @@ vue init template project-name，根据什么模板，创建一个项目，模�
 5. 在页面中，可以点击图标对应的get code，可以看到使用这个图标的用法
 6. 点击download,将图标下载到本地
 7. 参照demo.html，用法如下：
+```js
+// main.js
+import './common/stylus/style.css'
+```
 ```html
   <span class="icon-arrow_lift"></span>
 ```
@@ -379,3 +383,36 @@ export default {
   }
 }
 ```
+
+# 使用媒体查询，设置不同dpr设备使用不同的图片
+1. 设置一个函数，针对不同屏使用不同x倍图
+```less
+// element-demo/src/common/css/mixins.less
+.bg-img(@url) {
+  // 这里就是等于 url(@url + '@2x.png')，less中符号 ~ 后面的双引号的内容会被less编译时忽略，@{}等同于es6中的${} 参考：https://blog.csdn.net/weixin_44771007/article/details/106143210
+  background-image: ~"url(@{url}@2x.png)";
+  @meida (-webkit-min-device-pixel-ratio:3), (min-device-pixel-ratio: 3) {
+    // 注意，这里针对的是命名有规律的图
+    background: ~"url(@{url}@3x.png)";
+  }
+}
+```
+2. 在项目中引用
+```vue
+<style lang="less" scoped>
+// 注意这里引用不能使用@符号，因为不是js文件，只能使用相对路径
+@import '../../common/css/mixins.less';
+// 1. 设置父元素宽高； 2. 将图片放置在当前目录，引用函数； 3.设置background-size等同于宽高； 4. 设置不重复no-repeat 
+.content-discount-icon {
+  height: 12px;
+  width: 12px;
+  margin-right: 4px;
+  .bg-img('decrease_1');
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+}
+</style>
+```
+
+# 留存的问题
+1. 如何在vue项目中全局引入less变量？
