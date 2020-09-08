@@ -8,7 +8,7 @@ export const sell = Mock.mock({
   'des': '峰鸟配送 / 40分送达',
   'supports|1-3': [{
     'type|0-4': 0,
-    'des|1': '在线支付满20减2'
+    'des|1': ['在线支付满20减2', '满50减10', '优惠优惠']
   }],
   'bulletin|50': '这是公告',
   // 随机生成1-10条list

@@ -80,6 +80,9 @@ import './common/stylus/style.css'
 ## mock数据
 1. 安装： npm i mockjs
 2. 使用方法可参考：https://www.jianshu.com/p/d812ce349265
+```js
+// 可参见：element-demo/src/common/js/mock.js
+```
 
 ## 引入初始化的css样式，并设置meta
 1. 下载css初始化文件：https://meyerweb.com/eric/tools/css/reset/
@@ -356,9 +359,9 @@ import '@/common/css/index.less' // 报错，说找不到模块
 </template>
 ```
 
-# 使用vue-resource发送请求
-## 安装：npm i vue-resource --save
-## 引入
+## 使用vue-resource发送请求
+### 安装：npm i vue-resource --save
+### 引入
 ```js
 // main.js
 import VueResource from 'vue-resource'
@@ -414,5 +417,64 @@ export default {
 </style>
 ```
 
+# sticky footer布局
+我们所见到的大部分网站页面，都会把一个页面分为头部区块、内容区块和页脚区块，当头部区块和内容区块内容较少时，页脚能固定在屏幕的底部，而非随着文档流排布。当页面内容较多时，页脚能随着文档流自动撑开，显示在页面的最底部，这就是Sticky footer布局。
+
+基本实现方向：负margin的做法
+1. 定义一个上面的容器，清除浮动，最小高度设为100%，设置一个padding-bottom值，这个值为footer的高度和负margin-top值
+2. 定义一个footer容器，和上面容器平级，height,line-height,margin-top设置为与上面容器的padding-bottom值
+## sticky footer的实现
+```html
+<!-- 使用sticky footer布局 -->
+<div class="detail" v-show="showDetail">
+  <div class="detail-wrapper clearfix">
+    <div class="detail-content"></div>
+  </div>
+  <div class="detail-close"></div>
+</div>
+```
+```less
+// common.less
+.clearfix {
+  display: inline-block;
+  &:after {
+    display: block;
+    content: ".";
+    height: 0;
+    line-height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+// header.vue
+// 这种负margin的布局方式，是兼容性最佳的布局方案，各大浏览器均可完美兼容，适合各种场景，但使用这种方式的前提是必须要知道footer元素的高度，且结构相对较复杂。
+.detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  overflow: auto;
+  background: rgba(7,17,27,0.8);
+  // blur: 10%;
+  .detail-wrapper {
+    min-height: 100%;
+    .detail-content {
+      margin-top: 4rem;
+      padding-bottom: 4rem; //注意，这里要用padding,不能使用margin，这个是关键
+    }
+  }
+  .detail-close {
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    margin: -4rem auto 0 auto;  /* 使footer区块正好处于content的padding-bottom位置 */
+    clear: both;
+    font-size: 2rem;
+    color: rgba(255,255,255,0.5)
+  }
+}
+```
 # 留存的问题
 1. 如何在vue项目中全局引入less变量？

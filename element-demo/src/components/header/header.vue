@@ -16,16 +16,40 @@
           <span class="support-content">{{seller.supports[0].des}}</span>
         </div>
       </div>
-      <div class="count">
+      <div class="count" @click="showDetailPage">
         {{seller.list.length}}个 >
       </div>
     </div>
-    <div class="bulletin-warpper">
+    <!-- 公告及优惠 -->
+    <div class="bulletin-warpper" >
       <span class="bulletin-icon"></span>
       <span class="bulletin-content">{{seller.bulletin}}</span>
       <span class="icon-keyboard_arrow_right"></span>
     </div>
+    <!-- 使用sticky footer布局 -->
+    <div class="detail" v-show="showDetail">
+      <div class="detail-wrapper clearfix">
+        <div class="detail-content">
+          <p>{{seller.bulletin}}</p>
+          <p>{{seller.bulletin}}</p>
+          <p>{{seller.bulletin}}</p>
+          <p>{{seller.bulletin}}</p>
+          <p>{{seller.bulletin}}</p>
+          <p>{{seller.bulletin}}</p>
+          <p>{{seller.bulletin}}</p>
+          <p>{{seller.bulletin}}</p>
+          <p>{{seller.bulletin}}</p>
+          <p>{{seller.bulletin}}</p>
+          <p>{{seller.bulletin}}</p>
+          <p>{{seller.bulletin}}</p>
+          <p>{{seller.bulletin}}</p>
 
+        </div>
+      </div>
+      <div class="detail-close" @click="showDetail = false">
+        <span class="icon-close"></span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -35,7 +59,8 @@ export default {
   data() {
     return {
       msg: 'i am header',
-      supportIcon: ['decrease', 'discount', 'guarantee', 'invoice', 'special']
+      supportIcon: ['decrease', 'discount', 'guarantee', 'invoice', 'special'],
+      showDetail: false
     }
   },
   props: {
@@ -48,7 +73,13 @@ export default {
     console.log('seller11:', this.seller)
   },
   beforeMounted() {
+  },
+  methods: {
+    showDetailPage() {
+      this.showDetail = true
+    }
   }
+
 }
 </script>
 
@@ -160,6 +191,7 @@ export default {
     display: flex;
     justify-items: center;
     align-items: center;
+    background: rgba(7,17,27,0.2);
     // flex-wrap: nowrap;
     .bulletin-icon {
       display:inline-block;
@@ -177,6 +209,34 @@ export default {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+  }
+  // 这种负margin的布局方式，是兼容性最佳的布局方案，各大浏览器均可完美兼容，适合各种场景，但使用这种方式的前提是必须要知道footer元素的高度，且结构相对较复杂。
+  .detail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    overflow: auto;
+    background: rgba(7,17,27,0.8);
+    // blur: 10%;
+    .detail-wrapper {
+      min-height: 100%;
+      .detail-content {
+        margin-top: 4rem;
+        padding-bottom: 4rem; //注意，这里要用padding,不能使用margin，这个是关键
+      }
+    }
+    .detail-close {
+      position: relative;
+      width: 4rem;
+      height: 4rem;
+      margin: -4rem auto 0 auto;  /* 使footer区块正好处于content的padding-bottom位置 */
+      clear: both;
+      font-size: 2rem;
+      color: rgba(255,255,255,0.5)
     }
   }
 }
