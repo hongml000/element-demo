@@ -423,6 +423,8 @@ export default {
 基本实现方向：负margin的做法
 1. 定义一个上面的容器，清除浮动，最小高度设为100%，设置一个padding-bottom值，这个值为footer的高度和负margin-top值
 2. 定义一个footer容器，和上面容器平级，height,line-height,margin-top设置为与上面容器的padding-bottom值
+
+可参考：https://www.cnblogs.com/zsqos/archive/2017/06/02/6935646.html
 ## sticky footer的实现
 ```html
 <!-- 使用sticky footer布局 -->

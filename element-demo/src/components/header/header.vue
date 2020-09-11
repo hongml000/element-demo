@@ -30,20 +30,10 @@
     <div class="detail" v-show="showDetail">
       <div class="detail-wrapper clearfix">
         <div class="detail-content">
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
-
+          <h1 class="name">{{seller.name}}</h1>
+          <div class="rate">
+            <stars :size="48" :score="seller.score"></stars>
+          </div>
         </div>
       </div>
       <div class="detail-close" @click="showDetail = false">
@@ -54,6 +44,7 @@
 </template>
 
 <script>
+import stars from '@/components/stars'
 export default {
   name: 'elementHeader', // 这里不能取名header，会与原生html标签重名
   data() {
@@ -67,6 +58,9 @@ export default {
     seller: {
       type: Object
     }
+  },
+  components: {
+    stars
   },
   created() {
     console.log('s created')
@@ -224,9 +218,24 @@ export default {
     // blur: 10%;
     .detail-wrapper {
       min-height: 100%;
+      width:100%;
       .detail-content {
         margin-top: 4rem;
         padding-bottom: 4rem; //注意，这里要用padding,不能使用margin，这个是关键
+        color: #fff;
+        font-size: 0.75rem;
+        // line-height: 1.5rem;
+        padding: 0 2.25rem;
+        .name {
+          font-size: 1rem;
+          line-height: 1rem;
+          font-weight: bold;
+          text-align: center;
+        }
+        .rate {
+          padding:  1rem 0 1.75rem 0;
+          text-align: center;
+        }
       }
     }
     .detail-close {
