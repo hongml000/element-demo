@@ -1,3 +1,4 @@
+/* eslint-disable */
 // 用法可参考： https://www.jianshu.com/p/d812ce349265
 var Mock = require('mockjs')
 var Random = Mock.Random
@@ -6,7 +7,7 @@ export const sell = Mock.mock({
   'avatar': Random.image('64x64', '@color', '甜品'), // 随机生成一个64*64的，颜色随机的纯背影图
   'title': '@ctitle(7)', // 随机生成一个10个字的中文标题
   'des': '峰鸟配送 / 40分送达',
-  'supports|1-3': [{
+  'supports|1-10': [{
     'type|0-4': 0,
     'des|1': ['在线支付满20减2', '满50减10', '优惠优惠']
   }],
@@ -16,7 +17,13 @@ export const sell = Mock.mock({
   // 随机生成1-10条list
   'list|1-10': [{
     // id，递增+1，初始值为1
-    'id|+1': 1,
+    'title|1': [
+      '在线支付满20减2', 
+      '满50减10', 
+      '优惠优惠', 
+      '满50减15'
+    ],
+    'content|5-10': '在线支付满20减2',
     // 随机生成邮箱
     'email': '@email'
   }]

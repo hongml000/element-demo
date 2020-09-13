@@ -34,6 +34,25 @@
           <div class="rate">
             <stars :size="48" :score="seller.score"></stars>
           </div>
+          <div class="title">
+            <div class="line"></div>
+            <div class="text">优惠信息</div>
+            <div class="line"></div>
+          </div>
+          <ul v-if="seller.supports" class="youhui">
+            <li v-for="(item,index) in seller.supports" :key="index" class="youhui-item">
+              <span class="icon" :class="supportIcon[item.type]"></span>
+              <span class="text">{{item.des}}</span>
+            </li>
+          </ul>
+          <div class="title">
+            <div class="line"></div>
+            <div class="text">商家公告</div>
+            <div class="line"></div>
+          </div>
+          <div class="bulletins">
+            <p class="content">{{seller.bulletin}}</p>
+          </div>
         </div>
       </div>
       <div class="detail-close" @click="showDetail = false">
@@ -111,7 +130,7 @@ export default {
           height: 1.125rem;
           margin-right: 0.375rem;
           // border-radius: 2px;
-          .bg-img('./brand');
+          .bg-img('./imgs/brand');
           background-size: 1.875rem 1.125rem;
           background-repeat: no-repeat;
         }
@@ -131,33 +150,30 @@ export default {
         // vertical-align: top;
         display: flex;
         .support-icon {
-
           display: inline-block;
           height: 0.75rem;
           width: 0.75rem;
           min-width: 0.75rem;
           margin-right: 4px;
-
           background-size: 0.75rem 0.75rem;
           background-repeat: no-repeat;
           &.decrease {
-            .bg-img('decrease_1');
+            .bg-img('./imgs/decrease_1');
           }
           &.discount {
-            .bg-img('discount_1');
+            .bg-img('./imgs/discount_1');
           }
           &.guarantee {
-            .bg-img('guarantee_1');
+            .bg-img('./imgs/guarantee_1');
           }
           &.invoice {
-            .bg-img('invoice_1');
+            .bg-img('./imgs/invoice_1');
           }
           &.special {
-            .bg-img('special_1');
+            .bg-img('./imgs/special_1');
           }
         }
         .support-content {
-
           font-size: 0.625rem;
           line-height: 0.75rem;
         }
@@ -193,7 +209,7 @@ export default {
       width: 1.75rem;
       min-width: 1.75rem;
       padding-right: 0.25rem;
-      .bg-img('bulletin');
+      .bg-img('./imgs/bulletin');
       background-size: 1.75rem 0.875rem;
       background-repeat: no-repeat;
     }
@@ -235,6 +251,68 @@ export default {
         .rate {
           padding:  1rem 0 1.75rem 0;
           text-align: center;
+        }
+        .title {
+          display: flex;
+          // width: 80%;
+          margin: 0 auto 1.5rem auto;
+          justify-content: space-between;
+          .line {
+           .border-1px(rgba(255,255,255,0.2));
+           flex: 1;
+           position: relative;
+           top: -6px;
+          }
+          .text {
+            color: #fff;
+            font-size: 0.875rem;
+            line-height: 0.875rem;
+            font-weight: bold;
+            padding: 0 0.75rem;
+          }
+        }
+        .youhui {
+          font-size: 0;
+          vertical-align: top;
+          .youhui-item{
+            margin-bottom: 0.75rem;
+            margin-left: 0.75rem;
+            .icon {
+              display: inline-block;
+              width: 1rem;
+              height: 1rem;
+              margin-right: 0.375rem;
+              background-size: 1rem 1rem;
+              background-repeat: no-repeat;
+              &.decrease {
+              .bg-img('./imgs/decrease_2');
+              }
+              &.discount {
+                .bg-img('./imgs/discount_2');
+              }
+              &.guarantee {
+                .bg-img('./imgs/guarantee_2');
+              }
+              &.invoice {
+                .bg-img('./imgs/invoice_2');
+              }
+              &.special {
+                .bg-img('./imgs/special_2');
+              }
+            }
+            .text {
+              font-size: 0.75rem;
+              line-height: 1rem;
+              vertical-align: top;
+            }
+          }
+        }
+        .bulletins {
+          padding: 0 0.75rem;
+          .content {
+            font-size: 0.75rem;
+            line-height: 1.5rem;
+          }
         }
       }
     }
