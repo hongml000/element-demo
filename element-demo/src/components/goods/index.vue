@@ -1,6 +1,7 @@
 <template>
- <div>
-   {{msg}}
+ <div class="goods">
+   <div class="menu-wrapper"></div>
+   <div class="foods-wrapper"></div>
  </div>
 </template>
 
@@ -18,5 +19,9 @@ export default {
 </script>
 
 <style lang='less' scoped>
+.goods {
+  display: flex;
+  .menu-wrapper{}
 
+}
 </style>
